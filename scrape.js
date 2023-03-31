@@ -62,4 +62,4 @@ app.listen(PORT, () => {
   console.log(`App running on http://localhost:${PORT}`);
 });
 
-open('https://third-of-night-client.vercel.app/');
+//open('https://third-of-night-client.vercel.app/');
