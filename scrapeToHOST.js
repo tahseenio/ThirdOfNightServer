@@ -1,9 +1,12 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -13,6 +16,10 @@ app.use(
 
 app.get('/', (request, response) => {
   response.json({ info: 'Welcome to scraper. go to /scrape to get the times' });
+});
+
+app.get('/test', (request, response) => {
+  response.json({ fajr: '4:39 am', magrib: '5:47 pm' });
 });
 
 const fetchTimes = async (request, response) => {
