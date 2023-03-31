@@ -1,0 +1,21 @@
+{
+  "name": "scrapertohost",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scrapeToHOST.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scrapeToHost.js",
+    "dev": "nodemon scrapeToHost.js"
+  },
+  "engines": {
+    "node": "16.16.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
