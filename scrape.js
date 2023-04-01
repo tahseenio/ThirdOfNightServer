@@ -1,4 +1,15 @@
-const puppeteer = require('puppeteer');
+let chrome = {};
+let puppeteer;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  // running on the Vercel platform.
+  chrome = require('chrome-aws-lambda');
+  puppeteer = require('puppeteer-core');
+} else {
+  // running locally.
+  puppeteer = require('puppeteer');
+}
+
 const express = require('express');
 const cors = require('cors');
 
@@ -24,8 +35,14 @@ app.get('/test', (request, response) => {
 
 const fetchTimes = async (request, response) => {
   const url = 'https://themasjidapp.net/hpmosque';
-  // console.log('Opened Browser');
-  const browser = await puppeteer.launch();
+  console.log('Opened Browser');
+  const browser = await puppeteer.launch({
+    args: chrome.args,
+    defaultViewport: chrome.defaultViewport,
+    executablePath: await chrome.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
+  });
   try {
     const page = await browser.newPage();
     await page.setExtraHTTPHeaders({
