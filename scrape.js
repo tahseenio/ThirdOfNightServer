@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
 const cors = require('cors');
-const open = require('open');
 
 const PORT = process.env.PORT || 3000;
 
@@ -62,4 +61,4 @@ app.listen(PORT, () => {
   console.log(`App running on http://localhost:${PORT}`);
 });
 
-//open('https://third-of-night-client.vercel.app/');
+exports.module = app;
