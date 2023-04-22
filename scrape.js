@@ -24,6 +24,26 @@ app.get('/test', (request, response) => {
   response.json({ fajr: '4:39 am', magrib: '5:47 pm' });
 });
 
+app.get('/times', async (request, response) => {
+  // response.json({ fajr: '4:39 am', magrib: '5:47 pm' });
+  const fetchIt = async () => {
+    const dayOfYear = (date) =>
+      Math.floor(
+        (date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)
+      );
+    const currDayOfYear = dayOfYear(new Date());
+
+    const promise = await fetch(
+      'https://time.my-masjid.com/api/TimingsInfoScreen/GetMasjidTimings?GuidId=071cf335-19b7-4840-9e74-6bed3087a7e8'
+    );
+    const { model } = await promise.json();
+    console.log('day: ', currDayOfYear);
+    // console.log('day: ', currDayOfYear, model.salahTimings[currDayOfYear]);
+    response.json(model.salahTimings[currDayOfYear]);
+  };
+  fetchIt();
+});
+
 const fetchTimes = async (request, response) => {
   const options = process.env.AWS_REGION
     ? {
