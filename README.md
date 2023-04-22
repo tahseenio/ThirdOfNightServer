@@ -1,5 +1,5 @@
 # ThirdOfNightServer
-https://thirdofnightserver.onrender.com/
+- Backend to scrape times for https://github.com/tahseenio/ThirdOfNightClient
 
 Please note the DB may take some time (a few minutes) to spin up if the API hasnt been used in a while.
 
